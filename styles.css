@@ -1,0 +1,237 @@
+:root {
+    --primary-color: #007bff;
+    --accent-color: #00bcd4;
+    --background-light: #000000;
+    --background-dark: #2c3e50;
+    --text-dark: #333;
+    --text-light: #fff;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-light);
+    line-height: 1.6;
+    background-color: #fff;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2, h3, h4 {
+    font-weight: 600;
+}
+
+header {
+    background: #f3f026;
+    box-shadow: 0 2px 4px #0e0d0d;
+    color: var (--text-dark);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.plus {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    margin-left: 25px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+.cta-button {
+    background-color: var(--accent-color);
+    color: var(--text-light) !important;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 600 !important;
+}
+
+.primary-cta, .secondary-cta {
+    display: inline-block;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.primary-cta {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.primary-cta:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.secondary-cta {
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+.secondary-cta:hover {
+    background-color: var(--accent-color);
+    color: var(--text-light);
+}
+
+
+.hero-section {
+    background-color: var(--background-light);
+    padding: 150px 0 80px 0;
+}
+
+.hero-section .container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 55%;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: #6ab0ff;
+    margin-bottom: 30px;
+}
+
+.hero-visual {
+    flex: 1;
+    text-align: right;
+}
+
+.hero-visual img {
+    display: block;
+    margin-left: auto;
+}
+
+.project-section {
+    padding: 80px 0;
+    background-color: var(--background-light);
+    text-align: center;
+}
+
+.project-section h3 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.developer-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.developer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.developer-card h4 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin: 10px 0 5px 0;
+}
+
+.developer-card .role {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+/* Updated for perfect circle profile images */
+.dev-img {
+    width: 100px;
+    height: 100px; 
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden; 
+    background: none; 
+    display: block;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+footer {
+    background-color: var(--text-dark);
+    color: #bbb;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+}
