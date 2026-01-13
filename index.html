@@ -1,31 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Prasad Anand is an AIML student and software developer skilled in Python, C++, web development, and competitive programming." />
-    <title>Prasad Anand | AIML Engineer</title>
+    <title>Prasad Anand | AIML Engineer & Developer</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./logo.png">
     
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
                     animation: {
                         'spin-slow': 'spin 12s linear infinite',
                         'float': 'float 6s ease-in-out infinite',
                         'marquee': 'marquee 40s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-15px)' },
+                            '50%': { transform: 'translateY(-20px)' },
                         },
                         marquee: {
                             '0%': { transform: 'translateX(0)' },
@@ -35,333 +41,470 @@
                     colors: {
                         darkBg: '#050505',
                         lightBg: '#fdfcfb',
+                        accent: '#f97316',
+                        secondary: '#3b82f6',
                     }
                 }
             }
         }
-
-        // Automatic Theme Detection & Persistence
-        function initTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        }
-        initTheme();
-
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (!localStorage.getItem('theme')) {
-                if (e.matches) document.documentElement.classList.add('dark');
-                else document.documentElement.classList.remove('dark');
-            }
-        });
     </script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-lightBg dark:bg-darkBg text-[#2d2a2e] dark:text-gray-200 overflow-x-hidden">
 
-    <div class="blob top-0 left-0"></div>
-    <div class="blob bottom-0 right-0" style="animation-delay: -12s;"></div>
+</head>
+<body class="bg-lightBg dark:bg-darkBg text-stone-800 dark:text-gray-200 transition-colors duration-500 overflow-x-hidden">
+
+    <div class="scroll-progress" id="scrollBar"></div>
+
+    <div class="blob top-0 left-0 bg-accent"></div>
+    <div class="blob bottom-0 right-0 bg-secondary" style="animation-delay: -10s;"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-card border-t-0 border-x-0 !bg-opacity-70">
+    <nav class="fixed top-0 w-full z-50 glass-card border-none !bg-opacity-80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3 hover:scale-105 transition-transform cursor-pointer">
-                <div class="text-2xl font-black tracking-tighter">
-                    <span class="gradient-text uppercase">Prasad Anand</span>
-                </div>
+            <div class="flex items-center gap-2 hover:scale-105 transition-transform cursor-pointer">
+                <!-- P logo removed as per request -->
+                <span class="name-glow text-xl font-extrabold tracking-tighter uppercase">Prasad Anand</span>
             </div>
             
-            <div class="flex items-center gap-8">
-                <div class="hidden md:flex space-x-10 font-medium text-sm uppercase tracking-widest items-center">
-                    <a href="#home" class="hover:text-orange-500 transition-colors py-2">Home</a>
-                    <a href="#about" class="hover:text-orange-500 transition-colors py-2">About</a>
-                    <a href="#projects" class="hover:text-orange-500 transition-colors py-2">Portfolio</a>
+            <div class="flex items-center gap-6">
+                <!-- Navigation Links with Tactile Animation -->
+                <div class="hidden md:flex space-x-2 font-bold text-[11px] uppercase tracking-[0.2em]">
+                    <a href="#home" class="tactile-btn px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors hover:text-accent">Home</a>
+                    <a href="#about" class="tactile-btn px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors hover:text-accent">About</a>
+                    <a href="#skills" class="tactile-btn px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors hover:text-accent">Skills</a>
+                    <a href="#experience" class="tactile-btn px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors hover:text-accent">Experience</a>
+                    <a href="#achievements" class="tactile-btn px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors hover:text-accent">Achievements</a>
+                    <a href="#projects" class="tactile-btn px-4 py-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors hover:text-accent">Projects</a>
                 </div>
                 
-                <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:scale-110 active:scale-95 transition-all" aria-label="Toggle Theme">
-                    <i data-lucide="sun" id="sun-icon" class="w-5 h-5 block dark:hidden text-orange-500"></i>
-                    <i data-lucide="moon" id="moon-icon" class="w-5 h-5 hidden dark:block text-blue-400"></i>
-                </button>
-
-                <a href="#contact" class="hidden md:block px-6 py-2.5 bg-[#2d2a2e] dark:bg-white text-white dark:text-black rounded-full font-bold hover:bg-orange-500 dark:hover:bg-blue-500 transition-all text-xs uppercase tracking-widest shadow-sm">
-                    Contact Me
-                </a>
-                
-                <button class="md:hidden p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg transition-colors" onclick="toggleMenu()" aria-label="Open Menu">
-                    <i data-lucide="menu"></i>
-                </button>
+                <div class="flex items-center gap-4">
+                    <!-- Modern Glassmorphism Slider Toggle with Tactile Animation -->
+                    <button onclick="toggleTheme()" class="tactile-btn relative w-14 h-7 bg-emerald-500/20 dark:bg-white/10 backdrop-blur-md border border-white/20 dark:border-white/5 rounded-full p-1 flex items-center group shadow-lg" aria-label="Toggle Theme">
+                        <div class="absolute inset-0 bg-emerald-500/20 dark:bg-transparent rounded-full transition-opacity duration-500 opacity-100 dark:opacity-0"></div>
+                        <div class="relative w-5 h-5 bg-white dark:bg-stone-100 rounded-full shadow-md transform transition-transform duration-500 translate-x-7 dark:translate-x-0 flex items-center justify-center z-10">
+                            <i data-lucide="sun" class="w-3 h-3 text-orange-500 block dark:hidden"></i>
+                            <i data-lucide="moon" class="w-3 h-3 text-blue-600 hidden dark:block"></i>
+                        </div>
+                    </button>
+                    
+                    <!-- Connect Button with Tactile Animation -->
+                    <a href="#contact" class="tactile-btn px-5 py-2.5 bg-stone-900 dark:bg-white text-white dark:text-black rounded-xl font-bold hover:bg-accent dark:hover:bg-secondary transition-all text-[10px] uppercase tracking-widest shadow-xl">
+                        Connect
+                    </a>
+                </div>
             </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-lightBg dark:bg-darkBg border-b border-black/5 dark:border-white/10 p-6 space-y-4">
-            <a href="#home" class="block hover:text-orange-500 font-bold" onclick="toggleMenu()">Home</a>
-            <a href="#about" class="block hover:text-orange-500 font-bold" onclick="toggleMenu()">About</a>
-            <a href="#projects" class="block hover:text-orange-500 font-bold" onclick="toggleMenu()">Portfolio</a>
-            <a href="#contact" class="block text-orange-500 font-extrabold" onclick="toggleMenu()">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex flex-col justify-center pt-20 px-6">
-        <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-7 space-y-6">
-                <div class="flex flex-wrap gap-3">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/5 dark:bg-blue-500/5 border border-orange-500/10 dark:border-blue-500/20 text-orange-600 dark:text-blue-400 text-xs font-bold tracking-widest uppercase whitespace-nowrap">
-                        <span class="w-2 h-2 rounded-full bg-orange-400 dark:bg-blue-400 animate-pulse"></span>
-                        AIML undergraduate @ ZCOER, Pune
-                    </div>
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/10 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold tracking-widest uppercase whitespace-nowrap">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 dark:bg-emerald-400 animate-pulse"></span>
-                        Software Intern @ Tantrata Solutions
+    <section id="home" class="min-h-screen flex flex-col justify-center pt-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-16 items-center">
+            <div class="lg:col-span-7 space-y-8">
+                <div class="space-y-4">
+                    <h1 class="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter">
+                        Designing <br/> 
+                        <span class="gradient-text">Intelligence.</span>
+                    </h1>
+                    <!-- One-line specialization tag -->
+                    <div class="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-stone-400 dark:text-stone-500">
+                        AI & Machine Learning | Data Analytics | Backend Systems
                     </div>
                 </div>
-                <h1 class="text-6xl md:text-8xl font-black leading-none tracking-tight text-[#1a181b] dark:text-white">
-                    Exploring <span class="gradient-text">AI & Machine Learning</span>.
-                </h1>
-                <p class="text-xl text-stone-600 dark:text-gray-400 max-w-xl leading-relaxed">
-                    I’m Prasad Amar Anand, an AIML undergraduate passionate about solving complex problems using code, mathematics, and data-driven approaches.
+                
+                <p class="text-xl text-stone-500 dark:text-gray-400 max-w-xl leading-relaxed font-medium">
+                    Software Intern at Tantrata Solutions. Building data-driven solutions and refining algorithms to solve real-world complexities.
                 </p>
-                <div class="flex flex-wrap gap-5 pt-4">
-                    <a href="#projects" class="px-10 py-5 bg-[#2d2a2e] dark:bg-white text-white dark:text-black font-black rounded-2xl hover:bg-orange-500 dark:hover:bg-blue-500 transition-all flex items-center gap-3 shadow-xl hover:scale-105 active:scale-95">
-                        VIEW PORTFOLIO <i data-lucide="folder" class="w-5 h-5"></i>
+
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#projects" class="group px-8 py-4 bg-stone-900 dark:bg-white text-white dark:text-black font-black rounded-2xl hover:bg-accent dark:hover:bg-secondary transition-all flex items-center gap-3 shadow-2xl hover:scale-105 active:scale-95">
+                        EXPLORE WORK <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                     </a>
-                    <a href="#contact" class="px-10 py-5 border border-black/10 dark:border-white/10 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-all font-black text-stone-600 dark:text-gray-300 hover:scale-105 active:scale-95">
-                        LET'S CONNECT
+                    <a href="#contact" class="px-8 py-4 border-2 border-stone-200 dark:border-white/10 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-all font-black hover:scale-105 active:scale-95">
+                        CONTACT ME
                     </a>
                 </div>
             </div>
             
-            <!-- Bento Visual Grid - Interactive Expand-on-Hover -->
-            <div class="lg:col-span-5 relative hidden lg:grid grid-cols-2 gap-4 items-start">
-                <div class="glass-card bento-card p-6 rounded-3xl flex flex-col justify-between min-h-[16rem] animate-float transition-all duration-500" style="animation-delay: 0s;">
-                    <div class="w-12 h-12 bg-orange-100 dark:bg-blue-500/20 rounded-xl flex items-center justify-center text-orange-600 dark:text-blue-400">
-                        <i data-lucide="brain-circuit"></i>
+            <div class="lg:col-span-5 relative space-y-6">
+                <div class="glass-card rounded-3xl overflow-hidden shadow-2xl border-white/20">
+                    <div class="bg-stone-800 dark:bg-black/40 px-6 py-3 flex items-center gap-2 border-b border-white/5">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="ml-4 text-[10px] text-stone-400 font-mono font-bold uppercase tracking-widest">prasad_terminal.sh</span>
                     </div>
-                    <div class="mt-auto">
-                        <h4 class="font-bold text-lg mb-1">AI & ML</h4>
-                        <p class="summary text-xs text-stone-500 dark:text-gray-500 font-medium italic">Strong foundation in AI, ML, mathematics, and algorithms.</p>
-                        <div class="expanded-info">
-                            <ul class="text-[11px] text-stone-400 space-y-1.5 border-t border-black/5 dark:border-white/5 pt-3">
-                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-orange-500"></i> Neural Networks focus</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-orange-500"></i> Computer Vision projects</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-orange-500"></i> Predictive Modeling</li>
-                            </ul>
+                    <div class="p-8 font-mono text-sm space-y-4 min-h-[300px] bg-stone-900/90 backdrop-blur-xl">
+                        <div class="text-emerald-400">
+                            <span class="text-stone-500">$</span> prasad --info
+                        </div>
+                        <div class="text-stone-300 leading-relaxed" id="terminal-text"></div>
+                        <div id="terminal-cursor-line" class="flex items-center">
+                            <span class="text-stone-500 mr-2">$</span>
+                            <span class="terminal-cursor"></span>
                         </div>
                     </div>
                 </div>
-                <div class="glass-card bento-card p-6 rounded-3xl flex flex-col justify-between min-h-[16rem] animate-float transition-all duration-500" style="animation-delay: 1s;">
-                    <div class="w-12 h-12 bg-pink-100 dark:bg-purple-500/20 rounded-xl flex items-center justify-center text-pink-600 dark:text-purple-400">
-                        <i data-lucide="library"></i>
+                
+                <div class="absolute -bottom-10 -left-10 glass-card p-6 rounded-3xl hidden xl:flex items-center gap-4 animate-float shadow-2xl border-white/10 z-10">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-accent to-pink-500 flex items-center justify-center text-white">
+                        <i data-lucide="award" class="w-8 h-8"></i>
                     </div>
-                    <div class="mt-auto">
-                        <h4 class="font-bold text-lg mb-1">Python Libs</h4>
-                        <p class="summary text-xs text-stone-500 dark:text-gray-500 font-medium italic">Using Python libraries for data analysis and problem-solving.</p>
-                        <div class="expanded-info">
-                            <ul class="text-[11px] text-stone-400 space-y-1.5 border-t border-black/5 dark:border-white/5 pt-3">
-                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-pink-500"></i> Pandas / NumPy / SciKit</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-pink-500"></i> Matplotlib / Seaborn</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-pink-500"></i> TKinter GUI development</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="glass-card bento-card p-6 rounded-3xl flex flex-col justify-between min-h-[16rem] animate-float transition-all duration-500" style="animation-delay: 0.5s;">
-                    <div class="w-12 h-12 bg-amber-100 dark:bg-green-500/20 rounded-xl flex items-center justify-center text-amber-600 dark:text-green-400">
-                        <i data-lucide="languages"></i>
-                    </div>
-                    <div class="mt-auto">
-                        <h4 class="font-bold text-lg mb-1">Multilingual</h4>
-                        <p class="summary text-xs text-stone-500 dark:text-gray-500 font-medium italic">Comfortable communicating across diverse teams.</p>
-                        <div class="expanded-info">
-                            <ul class="text-[11px] text-stone-400 space-y-1.5 border-t border-black/5 dark:border-white/5 pt-3">
-                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-amber-500"></i> English (15+ Years)</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-amber-500"></i> German (3+ Years)</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-amber-500"></i> Marathi and Hindi (Native)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="glass-card bento-card p-6 rounded-3xl flex flex-col justify-between min-h-[16rem] animate-float transition-all duration-500" style="animation-delay: 1.5s;">
-                    <div class="w-12 h-12 bg-emerald-100 dark:bg-orange-500/20 rounded-xl flex items-center justify-center text-emerald-600 dark:text-orange-400">
-                        <i data-lucide="code-2"></i>
-                    </div>
-                    <div class="mt-auto">
-                        <h4 class="font-bold text-lg mb-1">CP Journey</h4>
-                        <p class="summary text-xs text-stone-500 dark:text-gray-500 font-medium italic">Regularly practicing DSA through competitive programming.</p>
-                        <div class="expanded-info">
-                            <ul class="text-[11px] text-stone-400 space-y-1.5 border-t border-black/5 dark:border-white/5 pt-3">
-                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-500"></i> LeetCode Solver</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-500"></i> CodeChef Ranks</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-500"></i> Data Structures</li>
-                            </ul>
-                        </div>
+                    <div>
+                        <div class="text-2xl font-black">2</div>
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Internships Finished</div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Marquee -->
-        <div class="max-w-7xl mx-auto w-full mt-12 border-t border-black/5 dark:border-white/5 overflow-hidden py-6">
-            <div class="marquee-container text-stone-400 dark:text-gray-500 font-bold text-sm uppercase tracking-widest">
+
+        <div class="max-w-7xl mx-auto w-full mt-24 border-y border-black/5 dark:border-white/5 overflow-hidden py-10">
+            <div class="marquee-container text-stone-400 dark:text-stone-500 font-extrabold text-xs uppercase tracking-[0.3em]">
                 <div class="flex items-center space-x-12 px-6">
-                    <span class="inline-flex items-center gap-2"><i data-lucide="code" class="w-4 h-4 text-orange-500"></i> Python</span>
-                    <span class="inline-flex items-center gap-2"><i data-lucide="terminal" class="w-4 h-4 text-blue-500"></i> C</span>
-                    <span class="inline-flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-purple-500"></i> C++</span>
-                    <span class="inline-flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4 text-red-500"></i> HTML</span>
-                    <span class="inline-flex items-center gap-2"><i data-lucide="palette" class="w-4 h-4 text-pink-500"></i> CSS</span>
-                    <span class="inline-flex items-center gap-2"><i data-lucide="braces" class="w-4 h-4 text-yellow-500"></i> JavaScript</span>
-                    <span class="inline-flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-emerald-500"></i> Vite.js</span>
-                    <span class="inline-flex items-center gap-2"><i data-lucide="atom" class="w-4 h-4 text-cyan-500"></i> React.js</span>
-                    <span class="inline-flex items-center gap-2"><i data-lucide="sigma" class="w-4 h-4 text-indigo-500"></i> Mathematics</span>
+                    <span class="flex items-center gap-3">Python</span>
+                    <span class="flex items-center gap-3">C++</span>
+                    <span class="flex items-center gap-3">JavaScript</span>
+                    <span class="flex items-center gap-3">TensorFlow</span>
+                    <span class="flex items-center gap-3">Competitive Programming</span>
+                    <span class="flex items-center gap-3">SQL</span>
+                    <span class="flex items-center gap-3">Machine Learning</span>
+                    <span class="flex items-center gap-3">Data Structures</span>
+                    <span class="flex items-center gap-3">Python</span>
+                    <span class="flex items-center gap-3">C++</span>
+                    <span class="flex items-center gap-3">JavaScript</span>
+                    <span class="flex items-center gap-3">TensorFlow</span>
+                    <span class="flex items-center gap-3">Competitive Programming</span>
+                    <span class="flex items-center gap-3">SQL</span>
+                    <span class="flex items-center gap-3">Machine Learning</span>
+                    <span class="flex items-center gap-3">Data Structures</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Currently Working On Section -->
-    <section class="py-12 px-6">
+    <!-- Skills Visualization Section -->
+    <section id="skills" class="py-32 px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="glass-card p-8 md:p-12 rounded-[2.5rem] border-orange-500/10 reveal shadow-lg">
-                <div class="flex items-center gap-4 mb-8 group">
-                    <div class="w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center shadow-lg shadow-orange-500/10 group-hover:scale-110 transition-transform">
-                        <i data-lucide="refresh-cw" class="text-orange-500 animate-spin-slow"></i>
-                    </div>
-                    <h2 class="text-3xl font-black text-[#1a181b] dark:text-white uppercase tracking-tighter">Currently Working On</h2>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="flex items-start gap-4 p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-transparent hover:border-orange-500/20 transition-all hover:scale-[1.03]">
-                        <i data-lucide="target" class="w-8 h-8 text-orange-500 mt-1"></i>
-                        <p class="text-stone-600 dark:text-gray-400 font-bold leading-tight">Improving DSA & competitive programming skills</p>
-                    </div>
-                    <div class="flex items-start gap-4 p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-transparent hover:border-blue-500/20 transition-all hover:scale-[1.03]">
-                        <i data-lucide="bot" class="w-8 h-8 text-blue-500 mt-1"></i>
-                        <p class="text-stone-600 dark:text-gray-400 font-bold leading-tight">Building AI/ML mini-projects using Python</p>
-                    </div>
-                    <div class="flex items-start gap-4 p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-transparent hover:border-emerald-500/20 transition-all hover:scale-[1.03]">
-                        <i data-lucide="monitor-smartphone" class="w-8 h-8 text-emerald-500 mt-1"></i>
-                        <p class="text-stone-600 dark:text-gray-400 font-bold leading-tight">Enhancing frontend skills with modern UI practices</p>
-                    </div>
-                </div>
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-5xl font-black tracking-tighter uppercase mb-4">Technical <span class="gradient-text">Arsenal</span></h2>
+                <p class="text-stone-500 max-w-lg mx-auto font-medium">Core competencies developed through academic rigor and professional experience.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-            <div class="reveal">
-                <h2 class="text-5xl font-black text-[#1a181b] dark:text-white mb-8 group">
-                    About <span class="hover:text-orange-500 transition-colors">Me</span>
-                </h2>
-                <div class="space-y-6 text-stone-600 dark:text-gray-400 text-lg leading-relaxed">
-                    <p>
-                        I’m Prasad Anand, an AIML undergraduate at <span class="font-bold text-[#1a181b] dark:text-white">Zeal College of Engineering and Research, Pune</span>. Currently interning at Tantrata Solutions Pvt. Ltd.
-                    </p>
-                    <p>
-                        I enjoy problem-solving and competitive programming. I actively practice on platforms like LeetCode and CodeChef to strengthen my logic.
-                    </p>
-                    <p>
-                        Driven by curiosity, I’m passionate about applying AI concepts to solve real-world problems.
-                    </p>
-                </div>
-            </div>
-            <div class="glass-card p-10 rounded-[3rem] reveal hover:border-orange-500/30" style="transition-delay: 200ms;">
-                <h3 class="text-2xl font-black mb-6 text-[#1a181b] dark:text-white">Technical Skills</h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="p-5 bg-orange-50 dark:bg-white/5 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform cursor-default group">
-                        <i data-lucide="code" class="text-orange-600 dark:text-orange-400"></i>
-                        <span class="font-bold text-sm">Python / C++</span>
+            
+            <!-- Skill Bars Row -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <div class="glass-card p-10 rounded-[2.5rem] reveal">
+                    <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-8">
+                        <i data-lucide="code-2" class="w-8 h-8"></i>
                     </div>
-                    <div class="p-5 bg-pink-50 dark:bg-white/5 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform cursor-default group">
-                        <i data-lucide="layout" class="text-pink-600 dark:text-pink-400"></i>
-                        <span class="font-bold text-sm">HTML / CSS / JS</span>
-                    </div>
-                    <div class="p-5 bg-amber-50 dark:bg-white/5 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform cursor-default group">
-                        <i data-lucide="function-square" class="text-amber-600 dark:text-amber-400"></i>
-                        <span class="font-bold text-sm">Advanced Math</span>
-                    </div>
-                    <div class="p-5 bg-emerald-50 dark:bg-white/5 rounded-2xl flex items-center gap-3 hover:scale-105 transition-transform cursor-default group">
-                        <i data-lucide="terminal" class="text-emerald-600 dark:text-emerald-400"></i>
-                        <span class="font-bold text-sm">CP Foundations</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Internship Experience Section -->
-    <section class="py-24 px-6 bg-stone-50/50 dark:bg-white/[0.01]">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl font-black text-center mb-16 uppercase tracking-tighter">Internship Experience</h2>
-            <div class="space-y-12">
-                <!-- Current Internship -->
-                <div class="flex gap-8 reveal">
-                    <div class="relative">
-                        <div class="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600">
-                            <i data-lucide="briefcase"></i>
+                    <h3 class="text-xl font-black mb-8">Languages</h3>
+                    <div class="space-y-6">
+                        <div class="skill-item" data-percent="50">
+                            <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-2">
+                                <span>Python</span>
+                                <span>50%</span>
+                            </div>
+                            <div class="h-2 w-full bg-stone-100 dark:bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar-fill h-full bg-accent rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="40">
+                            <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-2">
+                                <span>C++ / C</span>
+                                <span>40%</span>
+                            </div>
+                            <div class="h-2 w-full bg-stone-100 dark:bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar-fill h-full bg-accent rounded-full" style="width: 0%"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="glass-card p-6 rounded-2xl flex-1">
-                        <span class="text-xs font-bold text-emerald-500 uppercase tracking-widest">Jan 2026 - Feb 2026 (Present)</span>
-                        <h4 class="text-xl font-bold mt-1">Intern at Tantrata Solutions Pvt. Ltd.</h4>
-                        <p class="text-sm text-stone-500 mt-2 italic">Contributing to AIML solutions and software engineering projects.</p>
-                    </div>
                 </div>
-                <!-- Previous Internship -->
-                <div class="flex gap-8 reveal">
-                    <div class="relative">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center text-blue-600">
-                            <i data-lucide="award"></i>
+
+                <div class="glass-card p-10 rounded-[2.5rem] reveal" style="transition-delay: 100ms">
+                    <div class="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary mb-8">
+                        <i data-lucide="brain" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-black mb-8">AI & Machine Learning</h3>
+                    <div class="space-y-6">
+                        <div class="skill-item" data-percent="20">
+                            <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-2">
+                                <span>Neural Networks</span>
+                                <span>20%</span>
+                            </div>
+                            <div class="h-2 w-full bg-stone-100 dark:bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar-fill h-full bg-secondary rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="30">
+                            <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-2">
+                                <span>Data Science</span>
+                                <span>30%</span>
+                            </div>
+                            <div class="h-2 w-full bg-stone-100 dark:bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar-fill h-full bg-secondary rounded-full" style="width: 0%"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="glass-card p-6 rounded-2xl flex-1">
-                        <span class="text-xs font-bold text-blue-500 uppercase tracking-widest">June 2025 - July 2025</span>
-                        <h4 class="text-xl font-bold mt-1">Greenfinch Digital Business Solutions Internship</h4>
-                        <p class="text-sm text-stone-500 mt-2 italic">Gained initial industry exposure in digital business development.</p>
+                </div>
+
+                <div class="glass-card p-10 rounded-[2.5rem] reveal" style="transition-delay: 200ms">
+                    <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-500 mb-8">
+                        <i data-lucide="layout" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-black mb-8">Frontend & Tools</h3>
+                    <div class="space-y-6">
+                        <div class="skill-item" data-percent="75">
+                            <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-2">
+                                <span>Web (HTML/CSS/JavaScript)</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="h-2 w-full bg-stone-100 dark:bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar-fill h-full bg-emerald-500 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-percent="30">
+                            <div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-2">
+                                <span>React.js</span>
+                                <span>30%</span>
+                            </div>
+                            <div class="h-2 w-full bg-stone-100 dark:bg-white/5 rounded-full overflow-hidden">
+                                <div class="skill-bar-fill h-full bg-emerald-500 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Categorized Tech Cards -->
+            <div class="reveal pt-12 border-t border-black/5 dark:border-white/5">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    <!-- Category 1: Orange -->
+                    <div>
+                        <h4 class="text-xs font-black uppercase tracking-[0.3em] text-accent mb-8">Full-Stack & Languages</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="tech-card cat-orange" style="--p-val: 50%;">
+                                <i data-lucide="terminal" class="w-4 h-4"></i> Python
+                                <div class="reveal-bar"></div>
+                            </div>
+                            <div class="tech-card cat-orange" style="--p-val: 40%;">
+                                <i data-lucide="code" class="w-4 h-4"></i> C / C++
+                                <div class="reveal-bar"></div>
+                            </div>
+                            <div class="tech-card cat-orange" style="--p-val: 90%;">
+                                <i data-lucide="layout-template" class="w-4 h-4"></i> HTML5
+                                <div class="reveal-bar"></div>
+                            </div>
+                            <div class="tech-card cat-orange" style="--p-val: 60%;">
+                                <i data-lucide="palette" class="w-4 h-4"></i> JavaScript
+                                <div class="reveal-bar"></div>
+                            </div>
+                            <div class="tech-card cat-orange" style="--p-val: 30%;">
+                                <i data-lucide="braces" class="w-4 h-4"></i> TailWind
+                                <div class="reveal-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: Blue -->
+                    <div>
+                        <h4 class="text-xs font-black uppercase tracking-[0.3em] text-secondary mb-8">Libraries & Intelligence</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="tech-card cat-blue" style="--p-val: 30%;">
+                                <i data-lucide="atom" class="w-4 h-4"></i> React.js
+                                <div class="reveal-bar"></div>
+                            </div>
+                            <div class="tech-card cat-blue" style="--p-val: 50%;">
+                                <i data-lucide="brain-circuit" class="w-4 h-4"></i> NumPy
+                                <div class="reveal-bar"></div>
+                            </div>
+                            <div class="tech-card cat-blue" style="--p-val: 40%;">
+                                <i data-lucide="sigma" class="w-4 h-4"></i> Matplotlib
+                                <div class="reveal-bar"></div>
+                            </div>
+                            <div class="tech-card cat-blue" style="--p-val: 30%;">
+                                <i data-lucide="cpu" class="w-4 h-4"></i> Scikit-Learn
+                                <div class="reveal-bar"></div>
+                            </div>
+                            <div class="tech-card cat-blue" style="--p-val: 10%;">
+                                <i data-lucide="zap" class="w-4 h-4"></i> TensorFlow
+                                <div class="reveal-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Green -->
+                    <div>
+                        <h4 class="text-xs font-black uppercase tracking-[0.3em] text-emerald-500 mb-8">Dev Environment & Gear</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="tech-card cat-green" style="--p-val: 72%;">
+                                <i data-lucide="github" class="w-4 h-4"></i> Git / GitHub
+                                <div class="reveal-bar"></div>
+                            </div>
+                            <div class="tech-card cat-green" style="--p-val: 41%;">
+                                <i data-lucide="database" class="w-4 h-4"></i> PostgreSQL
+                                <div class="reveal-bar"></div>
+                            </div>
+                            <div class="tech-card cat-green" style="--p-val: 60%;">
+                                <i data-lucide="box" class="w-4 h-4"></i> Supabase
+                                <div class="reveal-bar"></div>
+                            </div>
+                            <div class="tech-card cat-green" style="--p-val: 75%;">
+                                <i data-lucide="terminal" class="w-4 h-4"></i> Linux Shell
+                                <div class="reveal-bar"></div>
+                            </div>
+                            <div class="tech-card cat-green" style="--p-val: 55%;">
+                                <i data-lucide="layers" class="w-4 h-4"></i> Vercel
+                                <div class="reveal-bar"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
+    <!-- Professional Experience Section (Internships) -->
+    <section id="experience" class="py-32 px-6 bg-stone-50/50 dark:bg-white/[0.01]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-5xl font-black tracking-tighter uppercase mb-4">Professional <span class="gradient-text">Journey</span></h2>
+                <p class="text-stone-500 max-w-lg mx-auto font-medium">Industry exposure and software engineering internships.</p>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Timeline Central Line -->
+                <div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-stone-200 dark:bg-white/10 hidden md:block"></div>
+
+                <div class="space-y-16">
+                    <!-- Tantrata Internship -->
+                    <div class="flex flex-col md:flex-row items-center gap-8 reveal">
+                        <div class="md:w-1/2 flex justify-end">
+                            <div class="glass-card p-8 rounded-[2.5rem] w-full max-w-md border-accent/20 hover:border-accent/50 group">
+                                <div class="flex justify-between items-start mb-6">
+                                    <div class="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
+                                        <i data-lucide="briefcase"></i>
+                                    </div>
+                                    <span class="px-4 py-1.5 bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest rounded-full">Jan 2026 - Feb 2026</span>
+                                </div>
+                                <h3 class="text-2xl font-black mb-1">Software Intern</h3>
+                                <h4 class="text-sm font-bold text-stone-400 mb-4 uppercase tracking-wider">Tantrata Digital Solutions Pvt Ltd.</h4>
+                                <p class="text-sm text-stone-500 dark:text-gray-400 leading-relaxed italic">
+                                    Currently contributing to specialized software development cycles and implementing data-driven logic within AIML workflows.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Timeline Node -->
+                        <div class="w-8 h-8 rounded-full bg-accent border-4 border-lightBg dark:border-darkBg z-10 shadow-2xl hidden md:block"></div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+
+                    <!-- Greenfinch Internship -->
+                    <div class="flex flex-col md:flex-row-reverse items-center gap-8 reveal">
+                        <div class="md:w-1/2 flex justify-start">
+                            <div class="glass-card p-8 rounded-[2.5rem] w-full max-w-md border-secondary/20 hover:border-secondary/50 group">
+                                <div class="flex justify-between items-start mb-6">
+                                    <div class="w-12 h-12 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+                                        <i data-lucide="building-2"></i>
+                                    </div>
+                                    <span class="px-4 py-1.5 bg-secondary/10 text-secondary text-[10px] font-black uppercase tracking-widest rounded-full">June 2025 - July 2025</span>
+                                </div>
+                                <h3 class="text-2xl font-black mb-1">Intern</h3>
+                                <h4 class="text-sm font-bold text-stone-400 mb-4 uppercase tracking-wider">Greenfinch Digital business solutions pvt ltd</h4>
+                                <p class="text-sm text-stone-500 dark:text-gray-400 leading-relaxed italic">
+                                    Assisted in the digital transformation and business solution modeling during a focused summer internship program.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Timeline Node -->
+                        <div class="w-8 h-8 rounded-full bg-secondary border-4 border-lightBg dark:border-darkBg z-10 shadow-2xl hidden md:block"></div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Gallery Section -->
     <section id="projects" class="py-32 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8 reveal">
                 <div class="space-y-4">
-                    <h2 class="text-5xl font-black text-[#1a181b] dark:text-white uppercase tracking-tighter">My Portfolio</h2>
-                    <p class="text-stone-500 dark:text-gray-500 max-w-md font-medium italic">Academic labs and web projects.</p>
+                    <h2 class="text-5xl font-black text-[#1a181b] dark:text-white uppercase tracking-tighter">Selected <span class="gradient-text">Works</span></h2>
+                    <p class="text-stone-500 max-w-md font-medium">A curation of academic and passion projects bridging development and intelligence.</p>
+                </div>
+                <div class="flex gap-4">
+                    <button data-filter="all" class="filter-btn active-all px-6 py-3 rounded-xl border border-stone-200 dark:border-white/10 font-bold text-xs uppercase tracking-widest transition-all">All</button>
+                    <button data-filter="aiml" class="filter-btn px-6 py-3 rounded-xl border border-stone-200 dark:border-white/10 font-bold text-xs uppercase tracking-widest hover:bg-stone-100 dark:hover:bg-white/5 transition-all">AI/ML</button>
+                    <button data-filter="web" class="filter-btn px-6 py-3 rounded-xl border border-stone-200 dark:border-white/10 font-bold text-xs uppercase tracking-widest hover:bg-stone-100 dark:hover:bg-white/5 transition-all">Web</button>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Health Tracker Card -->
-                <div class="group glass-card p-8 rounded-[2rem] reveal flex flex-col justify-between hover:shadow-orange-500/10">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="w-14 h-14 bg-orange-100 dark:bg-orange-500/20 rounded-2xl flex items-center justify-center text-orange-600 dark:text-orange-400 group-hover:rotate-12 transition-transform">
-                                <i data-lucide="activity" class="w-7 h-7"></i>
-                            </div>
-                            <div class="flex gap-2">
-                                <i data-lucide="layout" class="w-4 h-4 text-stone-400" title="HTML"></i>
-                                <i data-lucide="palette" class="w-4 h-4 text-stone-400" title="CSS"></i>
-                                <i data-lucide="braces" class="w-4 h-4 text-stone-400" title="JavaScript"></i>
-                            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10" id="projects-grid">
+                <div class="project-card group relative reveal" data-category="web">
+                    <div class="glass-card p-1 rounded-[2.5rem] overflow-hidden">
+                        <div class="aspect-video bg-stone-100 dark:bg-white/5 rounded-[2.2rem] flex items-center justify-center overflow-hidden mb-6 relative group-hover:scale-[0.98] transition-all duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <i data-lucide="activity" class="w-16 h-16 text-accent opacity-20 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"></i>
                         </div>
-                        <h3 class="text-2xl font-black mb-3 text-[#1a181b] dark:text-white group-hover:text-orange-500 transition-colors">Health Tracker</h3>
-                        <p class="text-stone-500 dark:text-gray-400 mb-6 font-medium leading-relaxed">A web app to monitor basic health metrics.</p>
-                        <div class="mb-8 p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-transparent group-hover:border-orange-500/10 transition-all">
-                            <p class="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-2">Tech Stack</p>
-                            <p class="text-sm font-bold text-stone-600 dark:text-gray-300">HTML, CSS, JavaScript, Python, SQL, Supabase, etc</p>
+                        <div class="p-8 pt-2">
+                            <div class="flex gap-2 mb-4">
+                                <span class="px-3 py-1 bg-accent/10 text-accent text-[9px] font-bold uppercase tracking-widest rounded-full">Web App</span>
+                                <span class="px-3 py-1 bg-secondary/10 text-secondary text-[9px] font-bold uppercase tracking-widest rounded-full">Supabase</span>
+                            </div>
+                            <h3 class="text-2xl font-black mb-4 group-hover:text-accent transition-colors">WellnessPlus Health Tracker</h3>
+                            <p class="text-stone-500 dark:text-gray-400 text-sm leading-relaxed mb-8">Comprehensive platform for monitoring vital health metrics with secure cloud data persistence.</p>
+                            <div class="flex items-center justify-between pt-6 border-t border-stone-100 dark:border-white/5">
+                                <a href="https://github.com/prasadanand412" target="_blank" class="text-xs font-black uppercase tracking-widest hover:text-accent flex items-center gap-2">GitHub <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                                <a href="https://wellnesspluss.vercel.app/" target="_blank" class="w-10 h-10 bg-stone-900 dark:bg-white rounded-full flex items-center justify-center text-white dark:text-black hover:scale-110 transition-transform">
+                                    <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex gap-4">
-                        <a href="https://github.com/prasadanand412" target="_blank" rel="noopener noreferrer" class="flex-1 py-4 px-4 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl text-center text-xs font-black uppercase hover:bg-orange-500 hover:text-white transition-all shadow-sm">GitHub</a>
-                        <a href="https://wellnesspluss.vercel.app/" target="_blank" rel="noopener noreferrer" class="flex-1 py-4 px-4 bg-[#2d2a2e] dark:bg-white text-white dark:text-black rounded-xl text-center text-xs font-black uppercase hover:bg-orange-500 hover:text-white shadow-lg transition-all">Live Demo</a>
+                </div>
+
+                <!-- Neural Stock Predictor (Locked) -->
+                <div class="project-card group relative reveal" data-category="aiml">
+                    <div class="glass-card p-1 rounded-[2.5rem] overflow-hidden">
+                        <div class="aspect-video bg-stone-100 dark:bg-white/5 rounded-[2.2rem] flex items-center justify-center overflow-hidden mb-6 relative group-hover:scale-[0.98] transition-all duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <i data-lucide="trending-up" class="w-16 h-16 text-secondary opacity-20 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"></i>
+                        </div>
+                        <div class="p-8 pt-2">
+                            <div class="flex gap-2 mb-4">
+                                <span class="px-3 py-1 bg-secondary/10 text-secondary text-[9px] font-bold uppercase tracking-widest rounded-full">Python</span>
+                                <span class="px-3 py-1 bg-purple-500/10 text-purple-500 text-[9px] font-bold uppercase tracking-widest rounded-full">TensorFlow</span>
+                            </div>
+                            <h3 class="text-2xl font-black mb-4 group-hover:text-secondary transition-colors">Neural Stock Predictor</h3>
+                            <p class="text-stone-500 dark:text-gray-400 text-sm leading-relaxed mb-8">LSTM-based neural network architecture for analyzing and forecasting historical stock trends.</p>
+                            <div class="flex items-center justify-between pt-6 border-t border-stone-100 dark:border-white/5">
+                                <span class="text-xs font-bold uppercase tracking-widest text-stone-300">Coming Soon</span>
+                                <div class="w-10 h-10 bg-stone-100 dark:bg-white/5 rounded-full flex items-center justify-center text-stone-400">
+                                    <i data-lucide="lock" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dijkstra Maze Solver (Locked) -->
+                <div class="project-card group relative reveal" data-category="aiml">
+                    <div class="glass-card p-1 rounded-[2.5rem] overflow-hidden">
+                        <div class="aspect-video bg-stone-100 dark:bg-white/5 rounded-[2.2rem] flex items-center justify-center overflow-hidden mb-6 relative group-hover:scale-[0.98] transition-all duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <i data-lucide="route" class="w-16 h-16 text-emerald-500 opacity-20 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"></i>
+                        </div>
+                        <div class="p-8 pt-2">
+                            <div class="flex gap-2 mb-4">
+                                <span class="px-3 py-1 bg-emerald-500/10 text-emerald-500 text-[9px] font-bold uppercase tracking-widest rounded-full">C++</span>
+                                <span class="px-3 py-1 bg-orange-500/10 text-orange-500 text-[9px] font-bold uppercase tracking-widest rounded-full">DSA</span>
+                            </div>
+                            <h3 class="text-2xl font-black mb-4 group-hover:text-emerald-500 transition-colors">Dijkstra Maze Solver</h3>
+                            <p class="text-stone-500 dark:text-gray-400 text-sm leading-relaxed mb-8">High-performance pathfinding implementation to solve complex 2D grids using weighted edges.</p>
+                            <div class="flex items-center justify-between pt-6 border-t border-stone-100 dark:border-white/5">
+                                <span class="text-xs font-bold uppercase tracking-widest text-stone-300">Coming Soon</span>
+                                <div class="w-10 h-10 bg-stone-100 dark:bg-white/5 rounded-full flex items-center justify-center text-stone-400">
+                                    <i data-lucide="lock" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -369,21 +512,68 @@
     </section>
 
     <!-- Achievements Section -->
-    <section class="py-24 px-6 bg-stone-50/50 dark:bg-white/[0.01]">
+    <section id="achievements" class="py-24 px-6 bg-stone-50/50 dark:bg-white/[0.01]">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl font-black text-center mb-16 uppercase tracking-tighter">Achievements & Stats</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="glass-card p-6 rounded-3xl text-center reveal">
-                    <div class="text-3xl font-black text-orange-500 mb-1">LeetCode</div>
-                    <p class="text-sm font-bold text-stone-500 uppercase tracking-widest">Problem Solver</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- LeetCode Card -->
+                <div class="glass-card achievement-card p-10 rounded-[2.5rem] text-center reveal border-accent/20 hover:border-accent group relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="text-3xl font-black text-accent mb-1 uppercase tracking-tighter">LeetCode</div>
+                        <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest">Problem Solver</p>
+                        
+                        <!-- Expandable Content -->
+                        <div class="expandable-content w-full">
+                            <div class="w-full bg-stone-100 dark:bg-white/5 h-1.5 rounded-full overflow-hidden mb-2">
+                                <div class="h-full bg-accent transition-all duration-1000 w-0 group-hover:w-[10%]" style="transition-delay: 0.2s;"></div>
+                            </div>
+                            <div class="flex justify-between text-[10px] font-bold uppercase tracking-widest text-stone-400">
+                                <span>Progress</span>
+                                <span>10%</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="glass-card p-6 rounded-3xl text-center reveal">
-                    <div class="text-3xl font-black text-blue-500 mb-1">CodeChef</div>
-                    <p class="text-sm font-bold text-stone-500 uppercase tracking-widest">Programmer</p>
+
+                <!-- CodeChef Card -->
+                <div class="glass-card achievement-card p-10 rounded-[2.5rem] text-center reveal border-secondary/20 hover:border-secondary group relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="text-3xl font-black text-secondary mb-1 uppercase tracking-tighter">CodeChef</div>
+                        <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest">Programmer</p>
+                        
+                        <!-- Expandable Content -->
+                        <div class="expandable-content w-full">
+                            <div class="w-full bg-stone-100 dark:bg-white/5 h-1.5 rounded-full overflow-hidden mb-2">
+                                <div class="h-full bg-secondary transition-all duration-1000 w-0 group-hover:w-[5%]" style="transition-delay: 0.2s;"></div>
+                            </div>
+                            <div class="flex justify-between text-[10px] font-bold uppercase tracking-widest text-stone-400">
+                                <span>Progress</span>
+                                <span>5%</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="glass-card p-6 rounded-3xl text-center reveal">
-                    <div class="text-3xl font-black text-emerald-500 mb-1">HackerRank</div>
-                    <p class="text-sm font-bold text-stone-500 uppercase tracking-widest">User</p>
+
+                <!-- HackerRank Card -->
+                <div class="glass-card achievement-card p-10 rounded-[2.5rem] text-center reveal border-emerald-500/20 hover:border-emerald-500 group relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="text-3xl font-black text-emerald-500 mb-1 uppercase tracking-tighter">HackerRank</div>
+                        <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest">User</p>
+                        
+                        <!-- Expandable Content -->
+                        <div class="expandable-content w-full">
+                            <div class="w-full bg-stone-100 dark:bg-white/5 h-1.5 rounded-full overflow-hidden mb-2">
+                                <div class="h-full bg-emerald-500 transition-all duration-1000 w-0 group-hover:w-[25%]" style="transition-delay: 0.2s;"></div>
+                            </div>
+                            <div class="flex justify-between text-[10px] font-bold uppercase tracking-widest text-stone-400">
+                                <span>Progress</span>
+                                <span>25%</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -391,147 +581,225 @@
 
     <!-- Contact Section -->
     <section id="contact" class="py-32 px-6">
-        <div class="max-w-5xl mx-auto glass-card p-12 md:p-20 rounded-[3rem] reveal border-orange-500/5 dark:border-white/5 shadow-2xl">
-            <div class="text-center mb-16 space-y-6">
-                <h2 class="text-5xl md:text-7xl font-black tracking-tighter uppercase text-[#1a181b] dark:text-white">Let's <span class="gradient-text">Connect</span></h2>
-                <p class="text-stone-500 dark:text-gray-400 text-lg max-w-xl mx-auto font-medium">Discussion on projects, ideas, or collaborations.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12 mb-16">
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4 group cursor-pointer">
-                        <div class="w-14 h-14 bg-white dark:bg-white/5 rounded-2xl flex items-center justify-center shadow-sm border border-stone-100 dark:border-white/10 group-hover:bg-orange-500 group-hover:scale-110 transition-all">
-                            <i data-lucide="mail" class="text-orange-600 dark:text-orange-400 w-6 h-6 group-hover:text-white transition-colors"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs font-bold text-stone-400 dark:text-gray-500 uppercase tracking-widest">Email Me</p>
-                            <a href="mailto:prasad.anand412@gmail.com" class="font-extrabold text-[#1a181b] dark:text-white hover:text-orange-500 transition-colors">prasad.anand412@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4 group cursor-default">
-                        <div class="w-14 h-14 bg-white dark:bg-white/5 rounded-2xl flex items-center justify-center shadow-sm border border-stone-100 dark:border-white/10 group-hover:scale-110 transition-all">
-                            <i data-lucide="map-pin" class="text-pink-600 dark:text-pink-400 w-6 h-6 group-hover:rotate-12 transition-transform"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs font-bold text-stone-400 dark:text-gray-500 uppercase tracking-widest">Location</p>
-                            <p class="font-extrabold text-[#1a181b] dark:text-white">Pune, Maharashtra, India</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="flex flex-col gap-6">
-                    <p class="text-xs font-bold text-stone-400 dark:text-gray-500 uppercase tracking-widest text-center md:text-left">Professional Links</p>
-                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                        <a href="https://github.com/prasadanand412" target="_blank" rel="noopener noreferrer" class="social-btn bg-white dark:bg-white/5 border border-stone-200 dark:border-white/10 text-[#1a181b] dark:text-white">
-                            <i data-lucide="github" class="w-4 h-4"></i> GitHub
-                        </a>
-                        <a href="https://www.linkedin.com/in/prasad-anand-b59218333/" target="_blank" rel="noopener noreferrer" class="social-btn bg-[#0077b5] text-white hover:opacity-90">
-                            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
-                        </a>
-                        <a href="https://leetcode.com/u/Prasad_Anand/" target="_blank" rel="noopener noreferrer" class="social-btn bg-[#f7931e]/10 dark:bg-[#f7931e]/20 border border-[#f7931e]/30 text-[#f7931e]">
-                            <i data-lucide="code-2" class="w-4 h-4"></i> LeetCode
-                        </a>
-                        <a href="https://www.codechef.com/users/prasadanand" target="_blank" rel="noopener noreferrer" class="social-btn bg-[#5b4638]/10 dark:bg-[#5b4638]/20 border border-[#5b4638]/30 text-[#5b4638]">
-                            <i data-lucide="terminal" class="w-4 h-4"></i> CodeChef
-                        </a>
-                        <a href="https://www.hackerrank.com/profile/prasadanand0412" target="_blank" rel="noopener noreferrer" class="social-btn bg-[#2ec866]/10 dark:bg-[#2ec866]/20 border border-[#2ec866]/30 text-[#2ec866] hover:bg-[#2ec866]/30">
-                            <i data-lucide="cpu" class="w-4 h-4"></i> HackerRank
-                        </a>
-                    </div>
-                </div>
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-6xl font-black tracking-tighter uppercase mb-4">Start a <span class="gradient-text">Project</span></h2>
+                <p class="text-stone-500 font-medium">Currently available for remote collaborations and internships.</p>
             </div>
 
-            <form onsubmit="handleForm(event)" class="space-y-8 pt-12 border-t border-stone-100 dark:border-white/10">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <input type="text" required placeholder="YOUR NAME" class="w-full bg-white dark:bg-white/5 border border-stone-200 dark:border-white/10 rounded-2xl px-8 py-5 focus:outline-none focus:border-orange-500 font-bold uppercase tracking-widest text-sm text-[#2d2a2e] dark:text-white transition-all focus:scale-[1.01] focus:ring-4 focus:ring-orange-500/10">
-                    <input type="email" required placeholder="YOUR EMAIL" class="w-full bg-white dark:bg-white/5 border border-stone-200 dark:border-white/10 rounded-2xl px-8 py-5 focus:outline-none focus:border-orange-500 font-bold uppercase tracking-widest text-sm text-[#2d2a2e] dark:text-white transition-all focus:scale-[1.01] focus:ring-4 focus:ring-orange-500/10">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="space-y-12 reveal">
+                    <div class="group cursor-pointer">
+                        <div class="flex items-center gap-6">
+                            <div class="w-16 h-16 bg-stone-100 dark:bg-white/5 rounded-3xl flex items-center justify-center group-hover:bg-accent group-hover:scale-110 transition-all">
+                                <i data-lucide="mail" class="w-6 h-6 group-hover:text-white transition-colors"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-1">Email Me</p>
+                                <a href="mailto:prasad.anand412@gmail.com" class="text-lg font-black hover:text-accent transition-colors">prasad.anand412@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="group cursor-pointer">
+                        <div class="flex items-center gap-6">
+                            <div class="w-16 h-16 bg-stone-100 dark:bg-white/5 rounded-3xl flex items-center justify-center group-hover:bg-secondary group-hover:scale-110 transition-all">
+                                <i data-lucide="linkedin" class="w-6 h-6 group-hover:text-white transition-colors"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-1">LinkedIn</p>
+                                <a href="https://www.linkedin.com/in/prasad-anand-b59218333/" target="_blank" class="text-lg font-black hover:text-secondary transition-colors">Prasad Anand</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-8 glass-card rounded-[2.5rem] bg-stone-900/5 dark:bg-white/5">
+                        <div class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-6">Socials</div>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://github.com/prasadanand412" target="_blank" class="p-4 bg-white dark:bg-stone-900 rounded-2xl hover:scale-110 transition-all shadow-sm"><i data-lucide="github" class="w-5 h-5"></i></a>
+                            <a href="https://leetcode.com/u/Prasad_Anand/" target="_blank" class="p-4 bg-white dark:bg-stone-900 rounded-2xl hover:scale-110 transition-all text-orange-500 shadow-sm"><i data-lucide="code-2" class="w-5 h-5"></i></a>
+                            <a href="https://www.hackerrank.com/profile/prasadanand0412" target="_blank" class="p-4 bg-white dark:bg-stone-900 rounded-2xl hover:scale-110 transition-all text-emerald-500 shadow-sm"><i data-lucide="cpu" class="w-5 h-5"></i></a>
+                            <a href="https://www.codechef.com/users/prasadanand" target="_blank" class="p-4 bg-white dark:bg-stone-900 rounded-2xl hover:scale-110 transition-all text-[#5b4638] dark:text-[#a89078] shadow-sm"><i data-lucide="terminal" class="w-5 h-5"></i></a>
+                            <a href="https://www.instagram.com/aprxsad._/" target="_blank" class="p-4 bg-white dark:bg-stone-900 rounded-2xl hover:scale-110 transition-all text-pink-500 shadow-sm"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <textarea rows="5" required placeholder="MESSAGE" class="w-full bg-white dark:bg-white/5 border border-stone-200 dark:border-white/10 rounded-2xl px-8 py-5 focus:outline-none focus:border-orange-500 font-bold uppercase tracking-widest text-sm text-[#2d2a2e] dark:text-white transition-all focus:scale-[1.01] focus:ring-4 focus:ring-orange-500/10"></textarea>
-                <button type="submit" class="w-full py-6 bg-[#2d2a2e] dark:bg-white text-white dark:text-black font-black rounded-2xl hover:bg-orange-500 dark:hover:bg-blue-500 hover:scale-105 active:scale-90 transition-all uppercase tracking-widest flex items-center justify-center gap-4 shadow-xl">
-                    Send Message <i data-lucide="send" class="w-5 h-5"></i>
-                </button>
-            </form>
+
+                <form onsubmit="handleForm(event)" class="space-y-6 reveal" style="transition-delay: 100ms">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest ml-4">Full Name</label>
+                            <input type="text" required class="w-full bg-stone-100 dark:bg-white/5 border border-stone-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-accent font-bold transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest ml-4">Email Address</label>
+                            <input type="email" required class="w-full bg-stone-100 dark:bg-white/5 border border-stone-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-accent font-bold transition-all">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black uppercase tracking-widest ml-4">Message</label>
+                        <textarea rows="5" required class="w-full bg-stone-100 dark:bg-white/5 border border-stone-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-accent font-bold transition-all resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-5 bg-stone-900 dark:bg-white text-white dark:text-black font-black rounded-2xl hover:bg-accent dark:hover:bg-secondary transition-all uppercase tracking-widest flex items-center justify-center gap-4 shadow-2xl hover:scale-[1.02] active:scale-95">
+                        SEND ENQUIRY <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
-    <footer class="py-20 px-6 border-t border-black/5 dark:border-white/5 text-center">
-        <div class="max-w-7xl mx-auto flex flex-col items-center gap-10">
-            <div class="text-4xl font-black gradient-text tracking-tighter uppercase cursor-pointer hover:scale-110 transition-transform">Prasad Anand</div>
-            <p class="text-xs text-stone-400 dark:text-gray-500 font-bold uppercase tracking-widest"> AIML Undergraduate &bull; Software Intern  &bull; Problem Solver</p>
-            <p class="text-xs text-stone-400 dark:text-gray-500 font-bold uppercase tracking-widest">Built with HTML, CSS, JavaScript &bull; Designed & developed by Prasad Anand</p>
+    <footer class="py-20 px-6 border-t border-black/5 dark:border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+            <div class="name-glow text-2xl font-black gradient-text tracking-tighter uppercase cursor-pointer">Prasad Anand</div>
+            <p class="text-[10px] text-stone-400 dark:text-stone-600 font-bold uppercase tracking-[0.3em]">
+                &copy; 2026 Crafted with Passion by Prasad
+            </p>
+            <div class="flex gap-6">
+                <a href="#home" class="text-[10px] font-bold uppercase tracking-widest hover:text-accent transition-colors">Home</a>
+                <a href="#projects" class="text-[10px] font-bold uppercase tracking-widest hover:text-accent transition-colors">Works</a>
+                <a href="#contact" class="text-[10px] font-bold uppercase tracking-widest hover:text-accent transition-colors">Legal</a>
+            </div>
         </div>
     </footer>
 
-    <!-- Custom Modal -->
-    <div id="modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-6 bg-stone-900/60 backdrop-blur-md">
-        <div class="glass-card max-w-md w-full p-10 rounded-[2.5rem] relative z-10 text-center border-orange-500/20 shadow-2xl scale-0 transition-transform duration-500" id="modalContent">
-            <div class="w-20 h-20 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i data-lucide="check-circle" class="text-orange-500 w-10 h-10 animate-bounce"></i>
+    <div id="modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-6 bg-stone-900/40 backdrop-blur-xl transition-all duration-300">
+        <div class="glass-card max-w-md w-full p-10 rounded-[3rem] relative z-10 text-center border-accent/20 shadow-2xl scale-50 opacity-0 transition-all duration-500" id="modalContent">
+            <div class="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="party-popper" class="text-accent w-10 h-10"></i>
             </div>
-            <h3 id="modalTitle" class="text-3xl font-black uppercase mb-4 tracking-tighter text-[#1a181b] dark:text-white">Success</h3>
-            <p id="modalBody" class="text-stone-500 dark:text-gray-400 mb-8 font-medium leading-relaxed">Message sent successfully.</p>
-            <button onclick="closeModal()" class="w-full py-4 bg-[#2d2a2e] dark:bg-white text-white dark:text-black font-black rounded-2xl hover:scale-105 transition-all uppercase tracking-widest text-sm shadow-lg shadow-orange-500/10">Return</button>
+            <h3 class="text-3xl font-black uppercase mb-4 tracking-tighter">Cheers!</h3>
+            <p class="text-stone-500 font-medium mb-8 leading-relaxed">I've received your message. I'll get back to you within 24 hours!</p>
+            <button onclick="closeModal()" class="w-full py-4 bg-stone-900 dark:bg-white text-white dark:text-black font-black rounded-2xl hover:scale-105 transition-all uppercase tracking-widest text-sm shadow-xl">Close</button>
         </div>
     </div>
 
     <script>
         lucide.createIcons();
 
-        function toggleMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            const scrollBar = document.getElementById("scrollBar");
+            if (scrollBar) scrollBar.style.width = scrolled + "%";
+        };
+
+        const terminalText = [
+            "Initializing Prasad_Bio_v2...",
+            "> Current_Role: AIML_Intern @ Tantrata",
+            "> Skills: Python, C++, ML, DSA",
+            "> Hobbies: Competitive_Coding, Reading",
+            "> Location: Pune_Maharashtra_IN",
+            "Ready for collaboration._"
+        ];
+        
+        const terminalContainer = document.getElementById('terminal-text');
+        let lineIdx = 0;
+        let charIdx = 0;
+
+        function typeLine() {
+            if (!terminalContainer) return;
+            if (lineIdx < terminalText.length) {
+                if (charIdx === 0) {
+                    const line = document.createElement('div');
+                    line.id = `line-${lineIdx}`;
+                    terminalContainer.appendChild(line);
+                }
+                const currentLine = document.getElementById(`line-${lineIdx}`);
+                currentLine.textContent += terminalText[lineIdx][charIdx];
+                charIdx++;
+                if (charIdx < terminalText[lineIdx].length) {
+                    setTimeout(typeLine, 40);
+                } else {
+                    charIdx = 0;
+                    lineIdx++;
+                    setTimeout(typeLine, 500);
+                }
+            }
         }
+        window.addEventListener('load', typeLine);
+
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filterValue = btn.getAttribute('data-filter');
+                
+                // Clear all active state classes
+                filterBtns.forEach(b => {
+                    b.classList.remove('active-all', 'active-aiml', 'active-web');
+                });
+                
+                // Add the correct category-specific active class
+                if (filterValue === 'all') btn.classList.add('active-all');
+                else if (filterValue === 'aiml') btn.classList.add('active-aiml');
+                else if (filterValue === 'web') btn.classList.add('active-web');
+
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filterValue === 'all' || category === filterValue) {
+                        card.classList.remove('filtered-out');
+                    } else {
+                        card.classList.add('filtered-out');
+                    }
+                });
+            });
+        });
 
         function toggleTheme() {
             const html = document.documentElement;
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
         }
 
-        function showMessage(title, message) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalBody').innerText = message;
-            document.getElementById('modal').classList.remove('hidden');
-            setTimeout(() => {
-                document.getElementById('modalContent').style.transform = 'scale(1)';
-            }, 10);
-        }
-
-        function closeModal() {
-            document.getElementById('modalContent').style.transform = 'scale(0)';
-            setTimeout(() => {
-                document.getElementById('modal').classList.add('hidden');
-            }, 500);
-        }
-
-        function handleForm(e) {
-            e.preventDefault();
-            showMessage('THANK YOU', "I've received your request and will get back to you shortly.");
-            e.target.reset();
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
         }
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    const skills = entry.target.querySelectorAll('.skill-bar-fill');
+                    skills.forEach(skill => {
+                        const parent = skill.closest('.skill-item');
+                        if (parent) {
+                            const percent = parent.getAttribute('data-percent');
+                            skill.style.width = percent + '%';
+                        }
+                    });
                 }
             });
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
-            } else {
-                nav.style.boxShadow = 'none';
+        function handleForm(e) {
+            e.preventDefault();
+            const modal = document.getElementById('modal');
+            const content = document.getElementById('modalContent');
+            if (modal && content) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    content.classList.remove('scale-50', 'opacity-0');
+                }, 50);
             }
-        });
+            e.target.reset();
+        }
+
+        function closeModal() {
+            const content = document.getElementById('modalContent');
+            const modal = document.getElementById('modal');
+            if (content && modal) {
+                content.classList.add('scale-50', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 500);
+            }
+        }
     </script>
 </body>
 </html>

@@ -1,146 +1,235 @@
-body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
+body { font-family: 'Plus Jakarta Sans', sans-serif; }
         
-        /* Custom Themed Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { 
-            background: rgba(249, 115, 22, 0.2); 
-            border-radius: 10px;
-            border: 3px solid transparent;
-            background-clip: content-box;
+            background: rgba(249, 115, 22, 0.3); 
+            border-radius: 20px;
         }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(249, 115, 22, 0.5); }
 
         .glass-card {
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .light .glass-card, html:not(.dark) .glass-card {
-            background: rgba(255, 255, 255, 0.6);
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.7);
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .dark .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .glass-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .light .glass-card:hover, html:not(.dark) .glass-card:hover {
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
-        }
-
-        .dark .glass-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.1);
-        }
-
-        /* Bento Card Hover State Logic */
-        .bento-card:hover {
-            background: rgba(255, 255, 255, 0.95);
-            border-color: rgba(249, 115, 22, 0.3);
-            transform: translateY(-4px) scale(1.02);
-            z-index: 10;
-        }
-        .dark .bento-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(249, 115, 22, 0.5);
-        }
-        .bento-card .expanded-info {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .bento-card:hover .expanded-info {
-            max-height: 300px;
-            opacity: 1;
-            margin-top: 1rem;
-        }
-
         .gradient-text {
-            background: linear-gradient(135deg, #f97316 0%, #db2777 100%);
+            background: linear-gradient(135deg, #f97316 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+        /* Name Hover Animation Styles */
+        .name-glow {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .name-glow:hover {
+            color: #f97316 !important;
+            -webkit-text-fill-color: #f97316 !important;
+            text-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+            transform: scale(1.02);
+        }
+
+        /* Tactile Push Button Animation */
+        .tactile-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tactile-btn:active {
+            transform: scale(0.94);
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .tactile-btn:active {
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
         .blob {
             position: absolute;
-            width: 600px;
-            height: 600px;
-            filter: blur(100px);
+            width: 500px;
+            height: 500px;
+            filter: blur(120px);
             border-radius: 50%;
             z-index: -1;
-            animation: move 25s infinite alternate ease-in-out;
-            transition: opacity 0.5s ease;
-        }
-
-        .light .blob, html:not(.dark) .blob {
-            background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(219, 39, 119, 0.08) 100%);
-        }
-
-        .dark .blob {
-            background: linear-gradient(135deg, rgba(96, 165, 250, 0.12) 0%, rgba(168, 85, 247, 0.12) 100%);
+            opacity: 0.15;
+            animation: move 20s infinite alternate ease-in-out;
         }
 
         @keyframes move {
-            from { transform: translate(-15%, -15%) rotate(0deg); }
-            to { transform: translate(25%, 25%) rotate(30deg); }
+            from { transform: translate(-10%, -10%) rotate(0deg); }
+            to { transform: translate(20%, 20%) rotate(60deg); }
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transform: translateY(20px);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.25rem;
-            border-radius: 0.75rem;
-            font-weight: 700;
-            font-size: 0.875rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(to right, #f97316, #3b82f6);
+            z-index: 100;
+            width: 0%;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background: #f97316;
+            margin-left: 4px;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .skill-bar-fill {
+            transition: width 1.5s cubic-bezier(0.1, 0, 0.2, 1);
+        }
+
+        .project-card {
+            transition: opacity 0.4s ease, transform 0.4s ease, display 0.4s allow-discrete;
         }
         
-        .social-btn:hover {
-            transform: translateY(-3px) scale(1.05);
+        .project-card.filtered-out {
+            display: none;
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        
+        /* Specific Category Button Active States */
+        .filter-btn.active-all {
+            background-color: #f97316; /* Orange */
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 10px 25px -5px rgba(249, 115, 22, 0.3);
+        }
+        .filter-btn.active-aiml {
+            background-color: #db2777; /* Pinkish */
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 10px 25px -5px rgba(219, 39, 119, 0.3);
+        }
+        .filter-btn.active-web {
+            background-color: #10b981; /* Green */
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.3);
         }
 
-        .marquee-container {
+        /* Tech Card Styling (Enhanced Tech Tags) */
+        .tech-card {
+            position: relative;
             display: flex;
-            width: 200%;
-            animation: marquee 40s linear infinite;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-weight: 700;
+            font-size: 0.875rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+        
+        .light .tech-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
-        .marquee-container:hover {
-            animation-play-state: paused;
+        /* Glare Effect */
+        .tech-card::after, .achievement-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.15), 
+                transparent
+            );
+            transition: left 0.6s ease;
+        }
+        .light .tech-card::after, .light .achievement-card::after {
+            background: linear-gradient(
+                90deg, 
+                transparent, 
+                rgba(249, 115, 22, 0.05), 
+                transparent
+            );
+        }
+        .tech-card:hover::after, .achievement-card:hover::after {
+            left: 100%;
         }
 
-        .logo-img {
-            height: 40px;
-            width: auto;
-            object-fit: contain;
-            transition: transform 0.3s ease;
+        .tech-card:hover {
+            transform: translateY(-4px);
+            border-color: currentColor;
         }
-        .logo-img:hover {
-            transform: scale(1.1);
+
+        /* Reveal Progress Bar */
+        .reveal-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background-color: currentColor;
+            opacity: 0;
+            transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
         }
+        .tech-card:hover .reveal-bar {
+            opacity: 1;
+            width: var(--p-val);
+        }
+
+        /* Achievement Card specific styles */
+        .achievement-card {
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .achievement-card .expandable-content {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .achievement-card:hover .expandable-content {
+            max-height: 100px;
+            opacity: 1;
+            margin-top: 1.5rem;
+        }
+
+        /* Category Color Mappings */
+        .cat-orange { color: #f97316; }
+        .cat-blue { color: #3b82f6; }
+        .cat-green { color: #10b981; }
+
+        .cat-orange:hover { box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.1); }
+        .cat-blue:hover { box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1); }
+        .cat-green:hover { box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.1); }
