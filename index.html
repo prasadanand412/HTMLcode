@@ -8,11 +8,23 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./logo.png">
-    
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0f172a">
+
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js")
+            .then(reg => console.log("SW registered", reg))
+            .catch(err => console.error("SW failed", err));
+    });
+  }
+</script>
+
     <script>
         tailwind.config = {
             darkMode: 'class',
